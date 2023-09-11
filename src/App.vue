@@ -7,6 +7,7 @@ import PageHeader from './components/PageHeader.vue';
 import PageMain from './components/PageMain.vue';
 import PageLoader from './components/PageLoader.vue';
 
+
 /*** DATA ***/
 import axios from 'axios';
 import { store } from './data/store';
@@ -16,10 +17,11 @@ export default {
     components: { PageHeader, PageMain, PageLoader },
     data: () => ({ loaderIsActive: false }),
     methods: {
-        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects') {
+        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/project') {
 
             // Show Loader
             this.loaderIsActive = true;
+            store.alert = {};
 
             // Fetching
             axios.get(endpoint)
@@ -29,6 +31,11 @@ export default {
                 })
                 .catch(err => {
                     console.error(err);
+
+                    // Vreate alert message
+                    store.alert.type = 'danger';
+                    store.alert.title = 'Attenzione!';
+                    store.alert.message = 'Il server non risponde.';
                 })
                 .then(() => {
                     // Hide Loader

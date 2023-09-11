@@ -8,9 +8,10 @@ import BasePagination from './base/BasePagination.vue';
 
 /*** DATA ***/
 import { store } from '../data/store';
+import BaseAlert from './base/BaseAlert.vue';
 
 export default {
-    components: { ProjectCard, BasePagination },
+    components: { ProjectCard, BasePagination, BaseAlert },
     data: () => ({ store }),
     methods: {
         onProjectsPageChange(pageLink) {
@@ -25,6 +26,10 @@ export default {
 <template>
     <main class="container my-4">
 
+        <!-- Alert -->
+        <BaseAlert v-if="store.alert.message" v-bind="store.alert" @close="store.alert = {}" />
+
+        <!-- Projects List -->
         <section>
 
             <h1 class="mb-4">Progetti</h1>
