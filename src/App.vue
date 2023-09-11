@@ -39,7 +39,7 @@ export default {
     <PageHeader />
 
     <!-- Page Main -->
-    <PageMain />
+    <PageMain @projects-page-changed="fetchProjects" />
 </template>
 
 
