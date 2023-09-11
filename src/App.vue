@@ -1,10 +1,17 @@
 <script>
+/* -----------------------------------------
+* RESOURCES
+-------------------------------------------*/
+/*** COMPONENTS ***/
 import ProjectCard from './components/projects/ProjectCard.vue';
+import PageHeader from './components/PageHeader.vue';
 
+/*** DATA ***/
 import axios from 'axios';
 
+
 export default {
-    components: { ProjectCard },
+    components: { ProjectCard, PageHeader },
     data: () => ({
         projects: {
             data: [],
@@ -33,6 +40,10 @@ export default {
 
 
 <template>
+    <!-- Page Header -->
+    <PageHeader />
+
+    <!-- Page Main -->
     <main class="container my-4">
         <h1 class="mb-4">Lista Progetti</h1>
 
