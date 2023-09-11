@@ -12,6 +12,10 @@ export default {
             month = month < 10 ? '0' + month : month;
 
             return `${day}/${month}/${year}`;
+        },
+
+        abstract() {
+            return this.project.description.slice(0, 300) + '...';
         }
     }
 }
@@ -35,6 +39,9 @@ export default {
                 <span class="badge" :style="`background-color: ${project.type.color}`">{{ project.type.label
                 }}</span>
             </p>
+
+            <!--Abstract -->
+            <p>{{ abstract }}</p>
         </div>
 
         <!-- Card Footer -->
