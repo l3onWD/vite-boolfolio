@@ -46,8 +46,16 @@ export default {
 
         <!-- Card Footer -->
         <div>
+            <!-- Tecnologies -->
+            <div v-if="project.tecnologies" class="d-flex gap-2 mb-1">
+                <span v-for="tecnology in project.tecnologies" :key="tecnology.id" class="badge"
+                    :class="`text-bg-${tecnology.color}`">
+                    {{ tecnology.label }}
+                </span>
+            </div>
+
             <!-- Created At -->
-            <p><strong>Creato il: </strong>{{ createdDate }}</p>
+            <p><strong>Creato il: </strong><time>{{ createdDate }}</time></p>
         </div>
 
     </div>
