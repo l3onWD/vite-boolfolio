@@ -1,6 +1,19 @@
 <script>
 export default {
-    props: { project: Object }
+    props: { project: Object },
+    computed: {
+        createdDate() {
+            const date = new Date(this.project.created_at);
+            let day = date.getDate();
+            let month = date.getMonth() + 1;
+            const year = date.getFullYear();
+
+            day = day < 10 ? '0' + day : day;
+            month = month < 10 ? '0' + month : month;
+
+            return `${day}/${month}/${year}`;
+        }
+    }
 }
 </script>
 
@@ -27,7 +40,7 @@ export default {
         <!-- Card Footer -->
         <div>
             <!-- Created At -->
-            <p><strong>Creato il: </strong>{{ project.created_at }}</p>
+            <p><strong>Creato il: </strong>{{ createdDate }}</p>
         </div>
 
     </div>
