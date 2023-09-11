@@ -17,13 +17,19 @@ export default {
     components: { PageHeader, PageMain, PageLoader },
     data: () => ({ loaderIsActive: false }),
     methods: {
-        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects') {
+
+        /**
+         * Retrieve Projects from the API
+         * @param {String} endpoint 
+         * @param {Object} params 
+         */
+        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects', params = {}) {
 
             // Show Loader
             this.loaderIsActive = true;
 
             // Fetching
-            axios.get(endpoint)
+            axios.get(endpoint, { params })
                 .then(res => {
                     const { data, links } = res.data;
                     store.projects = { data, links };
@@ -40,6 +46,18 @@ export default {
                     // Hide Loader
                     this.loaderIsActive = false;
                 });
+        },
+
+
+        /**
+         * Retrieve Projects with filters stored
+         */
+        filterProjects() {
+            const params = {};
+
+            if (store.filters.name) params.filter_name = store.filters.name;
+
+            this.fetchProjects('http://127.0.0.1:8000/api/projects', params);
         }
     },
     created() {
@@ -54,7 +72,7 @@ export default {
     <PageHeader />
 
     <!-- Page Main -->
-    <PageMain @projects-page-changed="fetchProjects" />
+    <PageMain @projects-page-changed="fetchProjects" @projects-filters-changed="filterProjects" />
 
     <!-- Page Loader -->
     <PageLoader :isActive="loaderIsActive" />
