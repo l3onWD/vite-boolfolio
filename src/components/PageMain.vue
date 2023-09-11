@@ -9,16 +9,17 @@ import BasePagination from './base/BasePagination.vue';
 /*** DATA ***/
 import { store } from '../data/store';
 import BaseAlert from './base/BaseAlert.vue';
+import ProjectFilterBar from './projects/ProjectFilterBar.vue';
 
 export default {
-    components: { ProjectCard, BasePagination, BaseAlert },
+    components: { ProjectCard, BasePagination, BaseAlert, ProjectFilterBar },
     data: () => ({ store }),
     methods: {
         onProjectsPageChange(pageLink) {
             this.$emit('projects-page-changed', pageLink)
         }
     },
-    emits: ['projects-page-changed']
+    emits: ['projects-page-changed', 'projects-filters-changed']
 }
 </script>
 
@@ -33,6 +34,9 @@ export default {
         <section>
 
             <h1 class="mb-4">Progetti</h1>
+
+            <!-- Filters -->
+            <ProjectFilterBar @projects-filters-changed="$emit('projects-filters-changed')" />
 
             <div v-if="store.projects.data.length" class="row-cols-1">
                 <div v-for="project in store.projects.data" :key="project.id" class="col mb-3">
