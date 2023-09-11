@@ -19,8 +19,6 @@ export default {
                 .then(res => {
                     const { data, links } = res.data;
                     store.projects = { data, links };
-
-                    console.log(store.projects.data);
                 })
                 .catch(err => {
                     console.error(err);
