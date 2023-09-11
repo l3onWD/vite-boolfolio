@@ -5,6 +5,7 @@
 /*** COMPONENTS ***/
 import PageHeader from './components/PageHeader.vue';
 import PageMain from './components/PageMain.vue';
+import PageLoader from './components/PageLoader.vue';
 
 /*** DATA ***/
 import axios from 'axios';
@@ -12,9 +13,15 @@ import { store } from './data/store';
 
 
 export default {
-    components: { PageHeader, PageMain },
+    components: { PageHeader, PageMain, PageLoader },
+    data: () => ({ loaderIsActive: false }),
     methods: {
         fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects') {
+
+            // Show Loader
+            this.loaderIsActive = true;
+
+            // Fetching
             axios.get(endpoint)
                 .then(res => {
                     const { data, links } = res.data;
@@ -22,6 +29,10 @@ export default {
                 })
                 .catch(err => {
                     console.error(err);
+                })
+                .then(() => {
+                    // Hide Loader
+                    this.loaderIsActive = false;
                 });
         }
     },
@@ -38,6 +49,9 @@ export default {
 
     <!-- Page Main -->
     <PageMain @projects-page-changed="fetchProjects" />
+
+    <!-- Page Loader -->
+    <PageLoader :isActive="loaderIsActive" />
 </template>
 
 
