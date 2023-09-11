@@ -37,7 +37,7 @@ export default {
 
             <h3 v-else>Non ci sono progetti</h3>
 
-            <BasicPagination :links="store.projects.links" @change-page="onProjectsPageChange" />
+            <BasicPagination :links="store.projects.links" @change-page="onProjectsPageChange" class="mt-4" />
 
         </section>
 
