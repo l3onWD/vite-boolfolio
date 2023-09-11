@@ -4,5 +4,6 @@ export const store = reactive({
     projects: {
         data: [],
         links: []
-    }
+    },
+    alert: {}
 });
