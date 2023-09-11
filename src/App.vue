@@ -17,11 +17,10 @@ export default {
     components: { PageHeader, PageMain, PageLoader },
     data: () => ({ loaderIsActive: false }),
     methods: {
-        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/project') {
+        fetchProjects(endpoint = 'http://127.0.0.1:8000/api/projects') {
 
             // Show Loader
             this.loaderIsActive = true;
-            store.alert = {};
 
             // Fetching
             axios.get(endpoint)
