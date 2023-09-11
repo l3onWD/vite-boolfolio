@@ -4,13 +4,20 @@
 -------------------------------------------*/
 /*** COMPONENTS ***/
 import ProjectCard from './projects/ProjectCard.vue';
+import BasicPagination from './basic/BasicPagination.vue';
 
 /*** DATA ***/
 import { store } from '../data/store';
 
 export default {
-    components: { ProjectCard },
-    data: () => ({ store })
+    components: { ProjectCard, BasicPagination },
+    data: () => ({ store }),
+    methods: {
+        onProjectsPageChange(pageLink) {
+            this.$emit('projects-page-changed', pageLink)
+        }
+    },
+    emits: ['projects-page-changed']
 }
 </script>
 
@@ -29,6 +36,8 @@ export default {
             </div>
 
             <h3 v-else>Non ci sono progetti</h3>
+
+            <BasicPagination :links="store.projects.links" @change-page="onProjectsPageChange" />
 
         </section>
 
