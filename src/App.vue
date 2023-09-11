@@ -3,15 +3,15 @@
 * RESOURCES
 -------------------------------------------*/
 /*** COMPONENTS ***/
-import ProjectCard from './components/projects/ProjectCard.vue';
 import PageHeader from './components/PageHeader.vue';
+import PageMain from './components/PageMain.vue';
 
 /*** DATA ***/
 import axios from 'axios';
 
 
 export default {
-    components: { ProjectCard, PageHeader },
+    components: { PageHeader, PageMain },
     data: () => ({
         projects: {
             data: [],
@@ -44,15 +44,7 @@ export default {
     <PageHeader />
 
     <!-- Page Main -->
-    <main class="container my-4">
-        <h1 class="mb-4">Lista Progetti</h1>
-
-        <div class="row row-cols-3 g-3">
-            <div v-for="project in projects.data" :key="project.id" class="col">
-                <ProjectCard :project="project" />
-            </div>
-        </div>
-    </main>
+    <PageMain />
 </template>
 
 
