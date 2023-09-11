@@ -5,5 +5,8 @@ export const store = reactive({
         data: [],
         links: []
     },
-    alert: {}
+    alert: {},
+    filters: {
+        name: ''
+    }
 });
