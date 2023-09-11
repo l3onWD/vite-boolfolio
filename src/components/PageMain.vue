@@ -38,8 +38,8 @@ export default {
             <!-- Filters -->
             <ProjectFilterBar @projects-filters-changed="$emit('projects-filters-changed')" />
 
-            <div v-if="store.projects.data.length" class="row-cols-1">
-                <div v-for="project in store.projects.data" :key="project.id" class="col mb-3">
+            <div v-if="store.projects.data.length" class="row row-cols-1 g-3">
+                <div v-for="project in store.projects.data" :key="project.id" class="col">
                     <ProjectCard :project="project" />
                 </div>
             </div>
