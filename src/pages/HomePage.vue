@@ -3,8 +3,12 @@
 * RESOURCES
 -------------------------------------------*/
 /*** COMPONENTS ***/
-import PageMain from '../components/PageMain.vue';
 import PageLoader from '../components/PageLoader.vue';
+import BaseAlert from '../components/base/BaseAlert.vue';
+import BasePagination from '../components/base/BasePagination.vue';
+import ProjectCard from '../components/projects/ProjectCard.vue';
+import ProjectFilterBar from '../components/projects/ProjectFilterBar.vue';
+
 
 /*** DATA ***/
 import axios from 'axios';
@@ -12,8 +16,8 @@ import { store } from '../data/store';
 
 
 export default {
-    components: { PageMain, PageLoader },
-    data: () => ({ loaderIsActive: false }),
+    components: { PageLoader, BasePagination, BaseAlert, ProjectCard, ProjectFilterBar },
+    data: () => ({ store, loaderIsActive: false }),
     methods: {
 
         /**
@@ -68,7 +72,32 @@ export default {
 
 <template>
     <!-- Page Main -->
-    <PageMain @projects-page-changed="fetchProjects" @projects-filters-changed="filterProjects" />
+    <main class="container my-4">
+
+        <!-- Alert -->
+        <BaseAlert v-if="store.alert.message" v-bind="store.alert" @close="store.alert = {}" />
+
+        <!-- Projects List -->
+        <section>
+
+            <h1 class="mb-4">Progetti</h1>
+
+            <!-- Filters -->
+            <ProjectFilterBar @projects-filters-changed="filterProjects" />
+
+            <div v-if="store.projects.data.length" class="row row-cols-1 g-3">
+                <div v-for="project in store.projects.data" :key="project.id" class="col">
+                    <ProjectCard :project="project" />
+                </div>
+            </div>
+
+            <h3 v-else>Non ci sono progetti</h3>
+
+            <BasePagination :links="store.projects.links" @change-page="fetchProjects" class="mt-4" />
+
+        </section>
+
+    </main>
 
     <!-- Page Loader -->
     <PageLoader :isActive="loaderIsActive" />
