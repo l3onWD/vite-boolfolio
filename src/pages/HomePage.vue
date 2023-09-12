@@ -17,7 +17,7 @@ import { store } from '../data/store';
 
 export default {
     components: { PageLoader, BasePagination, BaseAlert, ProjectCard, ProjectFilterBar },
-    data: () => ({ store, loaderIsActive: false }),
+    data: () => ({ store, projects: {}, loaderIsActive: false }),
     methods: {
 
         /**
@@ -34,7 +34,7 @@ export default {
             axios.get(endpoint, { params })
                 .then(res => {
                     const { data, links } = res.data;
-                    store.projects = { data, links };
+                    this.projects = { data, links };
                 })
                 .catch(err => {
                     console.error(err);
@@ -85,15 +85,16 @@ export default {
             <!-- Filters -->
             <ProjectFilterBar @projects-filters-changed="filterProjects" />
 
-            <div v-if="store.projects.data.length" class="row row-cols-1 g-3">
-                <div v-for="project in store.projects.data" :key="project.id" class="col">
+            <!-- Projects List -->
+            <div v-if="projects.data?.length" class="row row-cols-1 g-3">
+                <div v-for="project in projects.data" :key="project.id" class="col">
                     <ProjectCard :project="project" />
                 </div>
             </div>
-
             <h3 v-else>Non ci sono progetti</h3>
 
-            <BasePagination :links="store.projects.links" @change-page="fetchProjects" class="mt-4" />
+
+            <BasePagination v-if="projects.links" :links="projects.links" @change-page="fetchProjects" class="mt-4" />
 
         </section>
 
