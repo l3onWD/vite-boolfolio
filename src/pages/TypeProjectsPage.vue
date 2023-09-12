@@ -56,7 +56,7 @@ export default {
         <!-- Projects List -->
         <section>
 
-            <h1 class="mb-4">Progetti {{ type.label }}</h1>
+            <h1 v-if="type" class="mb-4">Progetti {{ type.label }}</h1>
 
             <!-- Projects List -->
             <div v-if="projects.length" class="row row-cols-1 g-3">

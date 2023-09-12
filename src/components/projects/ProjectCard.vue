@@ -41,10 +41,10 @@ export default {
             </RouterLink>
 
             <!-- Type -->
-            <p v-if="project.type">
+            <RouterLink v-if="project.type" :to="{ name: 'type-projects', params: { id: project.type.id } }">
                 <span class="badge" :style="`background-color: ${project.type.color}`">{{ project.type.label
                 }}</span>
-            </p>
+            </RouterLink>
 
             <!--Abstract -->
             <p>{{ abstract }}</p>
