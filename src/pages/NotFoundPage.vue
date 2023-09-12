@@ -18,7 +18,9 @@ export default {
 
 
 <style scoped lang="scss">
+@use '@/assets/scss/vars' as *;
+
 main {
-    height: calc(100vh - 56px);
+    height: calc(100vh - $page-header-height);
 }
 </style>
