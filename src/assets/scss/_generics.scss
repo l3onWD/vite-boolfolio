@@ -1,7 +1,33 @@
 /* -----------------------------------------
 * GENERICS
 -------------------------------------------*/
+@use 'vars' as *;
+
+body {
+    color: #fff;
+    background-color: $col-gray-900;
+}
+
+h1,
+h2,
+h3,
+h4 {
+    color: #fff;
+}
 
 a {
-    color: #fff;
+    color: $col-gray-100;
+
+    text-decoration: none;
+
+    &:hover {
+        color: #fff;
+    }
+}
+
+ul {
+    margin: 0;
+    padding: 0;
+
+    list-style: none;
 }
