@@ -29,10 +29,16 @@ export default {
         <!-- Card Top -->
         <div class="clearfix mb-3">
             <!-- Screenshot -->
-            <img v-if="project.screenshot" :src="project.screenshot" :alt="project.name" class="img-fluid float-start me-3">
+            <RouterLink v-if="project.screenshot" :to="{ name: 'project-detail', params: { id: project.id } }">
+                <img :src="project.screenshot" :alt="project.name" class="img-fluid float-start me-3">
+            </RouterLink>
 
             <!-- Name -->
-            <h4 class="mb-3">{{ project.name }}</h4>
+            <RouterLink :to="{ name: 'project-detail', params: { id: project.id } }" class="text-dark text-decoration-none">
+                <h4 class="mb-3">
+                    {{ project.name }}
+                </h4>
+            </RouterLink>
 
             <!-- Type -->
             <p v-if="project.type">
