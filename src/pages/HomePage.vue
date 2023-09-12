@@ -3,12 +3,12 @@
 * RESOURCES
 -------------------------------------------*/
 /*** COMPONENTS ***/
-import PageMain from './components/PageMain.vue';
-import PageLoader from './components/PageLoader.vue';
+import PageMain from '../components/PageMain.vue';
+import PageLoader from '../components/PageLoader.vue';
 
 /*** DATA ***/
 import axios from 'axios';
-import { store } from './data/store';
+import { store } from '../data/store';
 
 
 export default {
