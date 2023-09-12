@@ -9,14 +9,14 @@ export default {
 <template>
     <header>
         <!-- Navbar -->
-        <nav class="navbar navbar-expand">
+        <nav class="navbar">
             <div class="container">
 
                 <!-- Brand -->
-                <RouterLink :to="{ name: 'home' }" class="navbar-brand">Boolfolio</RouterLink>
+                <RouterLink :to="{ name: 'home' }" class="nav-brand">Boolfolio</RouterLink>
 
                 <!-- Menu -->
-                <ul class="navbar-nav">
+                <ul class="nav-menu">
 
                     <li class="nav-item">
                         <RouterLink :to="{ name: 'home' }" class="nav-link">Home</RouterLink>
@@ -29,7 +29,7 @@ export default {
                 </ul>
 
                 <!-- Actions -->
-                <ul class="mb-0">
+                <ul class="nav-actions">
                     <li>
                         <a href="#" target="_blank">Twitter</a>
                     </li>
@@ -46,26 +46,24 @@ header {
     position: sticky;
     top: 0;
 
-    box-shadow: 0 0 8px 4px rgba($color: $col-dark, $alpha: 0.1);
+    box-shadow: 0 0 8px 4px rgba($color: #000, $alpha: 0.2);
 }
 
 .navbar {
     height: $page-header-height;
 
-
-    color: $col-gray-500;
     background-color: $col-dark;
 
-    .navbar-nav a.active,
-    .navbar-brand {
-        color: #fff;
+    .nav-brand {
+        font-size: 1.8rem;
+        font-weight: bold;
+        text-transform: uppercase;
     }
 
-    a {
-        color: $col-gray-500;
-
-        &:hover {
-            color: #fff;
+    .nav-menu {
+        a {
+            font-weight: bold;
+            text-transform: uppercase;
         }
     }
 }
