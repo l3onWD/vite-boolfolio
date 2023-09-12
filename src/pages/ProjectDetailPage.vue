@@ -4,14 +4,14 @@
 -------------------------------------------*/
 /*** COMPONENTS ***/
 import PageLoader from '../components/PageLoader.vue';
-import ProjectCard from '../components/projects/ProjectCard.vue';
+import ProjectDetail from '../components/projects/ProjectDetail.vue';
 
 /*** DATA ***/
 import axios from 'axios';
 
 
 export default {
-    components: { PageLoader, ProjectCard },
+    components: { PageLoader, ProjectDetail },
     data: () => ({ project: null, loaderIsActive: false }),
     methods: {
 
@@ -52,7 +52,7 @@ export default {
     <!-- Page Main -->
     <main class="container my-4">
 
-        <div>{{ project }}</div>
+        <ProjectDetail v-if="project" :project="project" />
 
     </main>
 
