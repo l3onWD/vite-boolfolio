@@ -9,7 +9,7 @@ export default {
 <template>
     <header>
         <!-- Navbar -->
-        <nav class="navbar bg-dark" data-bs-theme="dark">
+        <nav class="navbar navbar-expand">
             <div class="container">
 
                 <!-- Brand -->
@@ -21,9 +21,44 @@ export default {
                     <li class="nav-item">
                         <RouterLink :to="{ name: 'home' }" class="nav-link">Home</RouterLink>
                     </li>
+                    <!-- 
+                    <li class="nav-item">
+                        <RouterLink :to="{ name: 'project-list' }" class="nav-link">Progetti</RouterLink>
+                    </li> -->
 
+                </ul>
+
+                <!-- Actions -->
+                <ul class="mb-0">
+                    <li>
+                        <a href="#" target="_blank">Twitter</a>
+                    </li>
                 </ul>
             </div>
         </nav>
     </header>
 </template>
+
+<style scoped lang="scss">
+@use '@/assets/scss/vars' as *;
+
+.navbar {
+    height: $page-header-height;
+
+    color: $col-gray-500;
+    background-color: $col-dark;
+
+    .navbar-nav a.active,
+    .navbar-brand {
+        color: #fff;
+    }
+
+    a {
+        color: $col-gray-500;
+
+        &:hover {
+            color: #fff;
+        }
+    }
+}
+</style>
