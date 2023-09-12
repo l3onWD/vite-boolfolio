@@ -42,8 +42,16 @@ export default {
 <style scoped lang="scss">
 @use '@/assets/scss/vars' as *;
 
+header {
+    position: sticky;
+    top: 0;
+
+    box-shadow: 0 0 8px 4px rgba($color: $col-dark, $alpha: 0.1);
+}
+
 .navbar {
     height: $page-header-height;
+
 
     color: $col-gray-500;
     background-color: $col-dark;
