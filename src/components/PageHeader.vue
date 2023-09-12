@@ -13,13 +13,13 @@ export default {
             <div class="container">
 
                 <!-- Brand -->
-                <a class="navbar-brand" href="#">Boolfolio</a>
+                <RouterLink :to="{ name: 'home' }" class="navbar-brand">Boolfolio</RouterLink>
 
                 <!-- Menu -->
                 <ul class="navbar-nav">
 
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Home</a>
+                        <RouterLink :to="{ name: 'home' }" class="nav-link">Home</RouterLink>
                     </li>
 
                 </ul>
