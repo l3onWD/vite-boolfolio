@@ -69,10 +69,13 @@ export default {
 
 
 <style scoped lang="scss">
+@use '@/assets/scss/vars' as *;
+
 .project-card {
     min-height: 200px;
     padding: 1rem;
 
+    background-color: $col-gray-700;
     border-radius: .5rem;
 
     box-shadow: 0 0 8px 4px rgba($color: #000, $alpha: 0.08);
