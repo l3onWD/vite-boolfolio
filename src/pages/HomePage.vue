@@ -17,7 +17,7 @@ import { store } from '../data/store';
 
 export default {
     components: { PageLoader, BasePagination, BaseAlert, ProjectCard, ProjectFilterBar },
-    data: () => ({ store, projects: {}, loaderIsActive: false }),
+    data: () => ({ store, alert: {}, projects: {}, loaderIsActive: false }),
     methods: {
 
         /**
@@ -40,9 +40,9 @@ export default {
                     console.error(err);
 
                     // Vreate alert message
-                    store.alert.type = 'danger';
-                    store.alert.title = 'Attenzione!';
-                    store.alert.message = 'Il server non risponde.';
+                    this.alert.type = 'danger';
+                    this.alert.title = 'Attenzione!';
+                    this.alert.message = 'Il server non risponde.';
                 })
                 .then(() => {
                     // Hide Loader
@@ -75,7 +75,7 @@ export default {
     <main class="container my-4">
 
         <!-- Alert -->
-        <BaseAlert v-if="store.alert.message" v-bind="store.alert" @close="store.alert = {}" />
+        <BaseAlert v-if="alert.message" v-bind="alert" @close="alert = {}" />
 
         <!-- Projects List -->
         <section>
