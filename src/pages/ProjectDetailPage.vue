@@ -32,7 +32,7 @@ export default {
                 })
                 .catch(err => {
                     console.error(err);
-
+                    this.$router.push({ name: 'not-found' })
                 })
                 .then(() => {
                     // Hide Loader
