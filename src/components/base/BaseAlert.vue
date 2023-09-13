@@ -3,7 +3,8 @@ export default {
     props: {
         type: String,
         title: String,
-        message: String
+        message: String,
+        dismissible: Boolean,
     },
     emits: ['close']
 
@@ -12,9 +13,10 @@ export default {
 
 
 <template>
-    <div class="alert alert-dismissible fade show my-3" :class="`alert-${type}`" role="alert">
+    <div class="alert alert-dismissible fade show my-3" :class="[`alert-${type}`, { 'alert-dismissible': dismissible }]"
+        role="alert">
         <strong>{{ title }}</strong> {{ message }}
-        <button type="button" class="btn-close" @click="$emit('close')"></button>
+        <button v-if="dismissible" type="button" class="btn-close" @click="$emit('close')"></button>
     </div>
 </template>
 
