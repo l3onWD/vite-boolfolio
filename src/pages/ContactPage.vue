@@ -17,6 +17,7 @@ export default {
     data: () => ({
         errors: {},
         successMessage: null,
+        isPristine: true,
         loaderIsActive: false,
         form: { ...emptyForm }
     }),
@@ -37,6 +38,7 @@ export default {
             // Reset
             this.errors = {};
             this.successMessage = null;
+            this.isPristine = false;
 
             // Show Loader
             this.loaderIsActive = true;
@@ -68,6 +70,10 @@ export default {
                     // Hide Loader
                     this.loaderIsActive = false;
                 });
+        },
+        validateField(field) {
+            if (this.isPristine) return '';
+            return this.errors[field] ? 'is-invalid' : 'is-valid';
         }
     }
 }
@@ -104,7 +110,7 @@ export default {
                         <div class="mb-3">
                             <label for="sender" class="form-label">Email<sup class="text-danger">*</sup></label>
                             <input v-model.trim="form.sender" type="email" class="form-control"
-                                :class="{ 'is-invalid': errors.sender }" id="sender" placeholder="name@example.it" required>
+                                :class="validateField('sender')" id="sender" placeholder="name@example.it" required>
                             <div class="invalid-feedback">
                                 {{ errors.sender }}
                             </div>
@@ -116,7 +122,7 @@ export default {
                         <div class="mb-3">
                             <label for="subject" class="form-label">Oggetto<sup class="text-danger">*</sup></label>
                             <input v-model.trim="form.subject" type="text" class="form-control"
-                                :class="{ 'is-invalid': errors.subject }" id="subject" required>
+                                :class="validateField('subject')" id="subject" required>
                             <div class="invalid-feedback">
                                 {{ errors.subject }}
                             </div>
@@ -127,8 +133,8 @@ export default {
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="message" class="form-label">Messaggio<sup class="text-danger">*</sup></label>
-                            <textarea v-model.trim="form.message" class="form-control"
-                                :class="{ 'is-invalid': errors.message }" id="message" rows="10" required></textarea>
+                            <textarea v-model.trim="form.message" class="form-control" :class="validateField('message')"
+                                id="message" rows="10" required></textarea>
                             <div class="invalid-feedback">
                                 {{ errors.message }}
                             </div>
