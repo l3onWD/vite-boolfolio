@@ -8,6 +8,7 @@ import BaseAlert from '../components/base/BaseAlert.vue';
 
 /*** DATA ***/
 import axios from 'axios';
+const endpoint = 'http://127.0.0.1:8000/api/contact-message';
 const emptyForm = { sender: '', subject: '', message: '' };
 
 
@@ -16,8 +17,23 @@ export default {
     data: () => ({
         alert: {},
         loaderIsActive: false,
-        form: emptyForm
-    })
+        form: { ...emptyForm }
+    }),
+    methods: {
+        sendMessage() {
+            axios.post(endpoint, this.form)
+                .then(() => {
+                    this.form = { ...emptyForm }
+                })
+                .catch(err => {
+                    console.error(err);
+                })
+                .then(() => {
+                    // Hide Loader
+                    this.loaderIsActive = false;
+                });
+        }
+    }
 }
 </script>
 
@@ -34,7 +50,7 @@ export default {
 
             <h1 class="mb-4">Contatti</h1>
 
-            <form novalidate>
+            <form @submit.prevent="sendMessage" novalidate>
 
                 <div class="row">
                     <!-- Email -->
@@ -64,7 +80,7 @@ export default {
                     </div>
 
                     <div class="col-12 text-end">
-                        <button type="button" class="btn btn-lg btn-success">Invia</button>
+                        <button class="btn btn-lg btn-success">Invia</button>
                     </div>
                 </div>
 
