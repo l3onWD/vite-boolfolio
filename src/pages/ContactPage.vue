@@ -35,9 +35,11 @@ export default {
         sendMessage() {
 
             // Reset
-            this.loaderIsActive = false;
             this.errors = {};
             this.successMessage = null;
+
+            // Show Loader
+            this.loaderIsActive = true;
 
             // API request
             axios.post(endpoint, this.form)
@@ -76,8 +78,11 @@ export default {
     <!-- Page Main -->
     <main class="container my-4">
 
+        <!-- Page Loader -->
+        <PageLoader v-if="loaderIsActive" :isActive="loaderIsActive" />
+
         <!-- Contact Form -->
-        <section>
+        <section v-else>
 
             <!-- Title -->
             <h1 class="mb-4">Contatti</h1>
@@ -128,9 +133,6 @@ export default {
             </form>
         </section>
     </main>
-
-    <!-- Page Loader -->
-    <PageLoader :isActive="loaderIsActive" />
 </template>
 
 
