@@ -15,18 +15,32 @@ const emptyForm = { sender: '', subject: '', message: '' };
 export default {
     components: { PageLoader, BaseAlert },
     data: () => ({
-        alert: {},
+        errors: {},
+        successMessage: null,
         loaderIsActive: false,
         form: { ...emptyForm }
     }),
+    computed: {
+        hasErrors() {
+            return Object.keys(this.errors).length;
+        },
+        showAlert() {
+            return Boolean(this.hasErrors || this.successMessage);
+        },
+        alertType() {
+            return this.hasErrors ? 'danger' : 'success';
+        }
+    },
     methods: {
         sendMessage() {
             axios.post(endpoint, this.form)
                 .then(() => {
                     this.form = { ...emptyForm }
+                    this.successMessage = 'Messaggio inviato con successo';
                 })
                 .catch(err => {
                     console.error(err);
+                    this.errors = { general: 'Impossibile inviare la richiesta.' }
                 })
                 .then(() => {
                     // Hide Loader
@@ -43,7 +57,12 @@ export default {
     <main class="container my-4">
 
         <!-- Alert -->
-        <BaseAlert />
+        <BaseAlert v-if="showAlert" :type="alertType">
+            <div v-if="successMessage">{{ successMessage }}</div>
+            <ul v-if="hasErrors">
+                <li v-for="(error, field) in errors" :key="field">{{ error }}</li>
+            </ul>
+        </BaseAlert>
 
         <!-- Contact Form -->
         <section>
