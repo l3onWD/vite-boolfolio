@@ -50,7 +50,8 @@ export default {
             axios.post(endpoint, this.form)
                 .then(() => {
                     // Reset form and set an alert message
-                    this.form = { ...emptyForm }
+                    this.form = { ...emptyForm };
+                    this.isPristine = true;
                     this.successMessage = 'Messaggio inviato con successo';
                 })
                 .catch(err => {
@@ -164,7 +165,7 @@ export default {
                     <div class="col-12">
                         <div class="form-check">
                             <input v-model="form.subscription" class="form-check-input" type="checkbox"
-                                :class="validateField('subscription')" value="" id="subscription">
+                                :class="validateField('subscription')" id="subscription">
                             <div class="invalid-feedback">
                                 {{ errors.subscription }}
                             </div>
