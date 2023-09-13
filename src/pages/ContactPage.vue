@@ -33,14 +33,34 @@ export default {
     },
     methods: {
         sendMessage() {
+
+            // Reset
+            this.loaderIsActive = false;
+            this.errors = {};
+            this.successMessage = null;
+
+            // API request
             axios.post(endpoint, this.form)
                 .then(() => {
+                    // Reset form and set an alert message
                     this.form = { ...emptyForm }
                     this.successMessage = 'Messaggio inviato con successo';
                 })
                 .catch(err => {
-                    console.error(err);
-                    this.errors = { general: 'Impossibile inviare la richiesta.' }
+                    // If Bad Request
+                    if (err.response.status === 400) {
+                        // Get response errors
+                        const { errors } = err.response.data;
+
+                        // Set response errors key to page errors object
+                        // (pick only the first message because of validation that can't have more than 1)
+                        for (const key in errors) this.errors[key] = errors[key][0];
+
+                    } else {
+                        // Generic error
+                        console.error(err);
+                        this.errors = { general: 'Impossibile inviare la richiesta.' }
+                    }
                 })
                 .then(() => {
                     // Hide Loader
@@ -56,19 +76,21 @@ export default {
     <!-- Page Main -->
     <main class="container my-4">
 
-        <!-- Alert -->
-        <BaseAlert v-if="showAlert" :type="alertType">
-            <div v-if="successMessage">{{ successMessage }}</div>
-            <ul v-if="hasErrors">
-                <li v-for="(error, field) in errors" :key="field">{{ error }}</li>
-            </ul>
-        </BaseAlert>
-
         <!-- Contact Form -->
         <section>
 
+            <!-- Title -->
             <h1 class="mb-4">Contatti</h1>
 
+            <!-- Alert -->
+            <BaseAlert v-if="showAlert" :type="alertType">
+                <div v-if="successMessage">{{ successMessage }}</div>
+                <ul v-if="hasErrors">
+                    <li v-for="(error, field) in errors" :key="field">{{ error }}</li>
+                </ul>
+            </BaseAlert>
+
+            <!-- Form -->
             <form @submit.prevent="sendMessage" novalidate>
 
                 <div class="row">
