@@ -103,8 +103,11 @@ export default {
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="sender" class="form-label">Email<sup class="text-danger">*</sup></label>
-                            <input v-model.trim="form.sender" type="email" class="form-control" id="sender"
-                                placeholder="name@example.it" required>
+                            <input v-model.trim="form.sender" type="email" class="form-control"
+                                :class="{ 'is-invalid': errors.sender }" id="sender" placeholder="name@example.it" required>
+                            <div class="invalid-feedback">
+                                {{ errors.sender }}
+                            </div>
                         </div>
                     </div>
 
@@ -112,7 +115,11 @@ export default {
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="subject" class="form-label">Oggetto<sup class="text-danger">*</sup></label>
-                            <input v-model.trim="form.subject" type="text" class="form-control" id="subject" required>
+                            <input v-model.trim="form.subject" type="text" class="form-control"
+                                :class="{ 'is-invalid': errors.subject }" id="subject" required>
+                            <div class="invalid-feedback">
+                                {{ errors.subject }}
+                            </div>
                         </div>
                     </div>
 
@@ -120,8 +127,11 @@ export default {
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="message" class="form-label">Messaggio<sup class="text-danger">*</sup></label>
-                            <textarea v-model.trim="form.message" class="form-control" id="message" rows="10"
-                                required></textarea>
+                            <textarea v-model.trim="form.message" class="form-control"
+                                :class="{ 'is-invalid': errors.message }" id="message" rows="10" required></textarea>
+                            <div class="invalid-feedback">
+                                {{ errors.message }}
+                            </div>
                         </div>
                     </div>
 
