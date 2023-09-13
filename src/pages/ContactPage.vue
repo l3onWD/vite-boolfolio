@@ -36,9 +36,12 @@ export default {
         sendMessage() {
 
             // Reset
-            this.errors = {};
             this.successMessage = null;
             this.isPristine = false;
+
+            // Frontend Validation
+            this.validateForm();
+            if (this.hasErrors) return;
 
             // Show Loader
             this.loaderIsActive = true;
@@ -74,6 +77,22 @@ export default {
         validateField(field) {
             if (this.isPristine) return '';
             return this.errors[field] ? 'is-invalid' : 'is-valid';
+        },
+        validateForm() {
+
+            // Error Reset
+            this.errors = {};
+
+            // Sender Mail Validation
+            if (!this.form.sender) this.errors.sender = 'La mail è obbligatoria';
+            else if (!this.form.sender.match(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/)) this.errors.sender = 'La mail non è vailda';
+
+            // Subject Validation
+            if (!this.form.subject) this.errors.subject = 'L\'oggetto è obbligatorio';
+
+            // Message Validation
+            if (!this.form.message) this.errors.message = 'Il messaggio è obbligatorio';
+
         }
     }
 }
