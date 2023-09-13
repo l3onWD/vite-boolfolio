@@ -39,10 +39,10 @@ export default {
                 .catch(err => {
                     console.error(err);
 
-                    // Vreate alert message
+                    // Create alert message
                     this.alert.type = 'danger';
-                    this.alert.title = 'Attenzione!';
                     this.alert.message = 'Il server non risponde.';
+                    this.alert.dismissible = true;
                 })
                 .then(() => {
                     // Hide Loader
