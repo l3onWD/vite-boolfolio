@@ -160,6 +160,20 @@ export default {
                         </div>
                     </div>
 
+                    <!-- Newsletter Subscription -->
+                    <div class="col-12">
+                        <div class="form-check">
+                            <input v-model="form.subscription" class="form-check-input" type="checkbox"
+                                :class="validateField('subscription')" value="" id="subscription">
+                            <div class="invalid-feedback">
+                                {{ errors.subscription }}
+                            </div>
+                            <label class="form-check-label" for="subscription">
+                                Iscriviti alla newsletter
+                            </label>
+                        </div>
+                    </div>
+
                     <div class="col-12 text-end">
                         <button class="btn btn-lg btn-success">Invia</button>
                     </div>
