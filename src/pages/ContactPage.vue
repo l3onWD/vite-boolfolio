@@ -9,8 +9,10 @@ import BaseAlert from '../components/base/BaseAlert.vue';
 
 export default {
     components: { PageLoader, BaseAlert },
-
-
+    data: () => ({
+        alert: {},
+        loaderIsActive: false
+    })
 }
 </script>
 
