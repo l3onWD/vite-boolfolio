@@ -2,6 +2,7 @@ import { createRouter, createWebHashHistory, createWebHistory } from 'vue-router
 
 // Pages
 import HomePage from '../pages/HomePage.vue';
+import ContactPage from '../pages/ContactPage.vue';
 import NotFoundPage from '../pages/NotFoundPage.vue';
 import ProjectDetailPage from '../pages/ProjectDetailPage.vue';
 import TypeProjectsPage from '../pages/TypeProjectsPage.vue';
@@ -13,6 +14,7 @@ const router = createRouter({
     linkExactActiveClass: 'active',
     routes: [
         { path: '/', name: 'home', component: HomePage },
+        { path: '/contact', name: 'contact', component: ContactPage },
         { path: '/projects/:id', name: 'project-detail', component: ProjectDetailPage },
         { path: '/types/:id/projects', name: 'type-projects', component: TypeProjectsPage },
         { path: '/not-found', name: 'not-found', component: NotFoundPage },
