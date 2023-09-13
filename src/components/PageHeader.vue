@@ -47,6 +47,7 @@ header {
     top: 0;
 
     box-shadow: 0 0 8px 4px rgba($color: #000, $alpha: 0.2);
+    z-index: 3;
 }
 
 .navbar {
