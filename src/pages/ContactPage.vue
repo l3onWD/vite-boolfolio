@@ -6,12 +6,17 @@
 import PageLoader from '../components/PageLoader.vue';
 import BaseAlert from '../components/base/BaseAlert.vue';
 
+/*** DATA ***/
+import axios from 'axios';
+const emptyForm = { sender: '', subject: '', message: '' };
+
 
 export default {
     components: { PageLoader, BaseAlert },
     data: () => ({
         alert: {},
-        loaderIsActive: false
+        loaderIsActive: false,
+        form: emptyForm
     })
 }
 </script>
@@ -35,8 +40,9 @@ export default {
                     <!-- Email -->
                     <div class="col-6">
                         <div class="mb-3">
-                            <label for="email" class="form-label">Email<sup class="text-danger">*</sup></label>
-                            <input type="email" class="form-control" id="email" placeholder="name@example.it" required>
+                            <label for="sender" class="form-label">Email<sup class="text-danger">*</sup></label>
+                            <input v-model.trim="form.sender" type="email" class="form-control" id="sender"
+                                placeholder="name@example.it" required>
                         </div>
                     </div>
 
@@ -44,7 +50,7 @@ export default {
                     <div class="col-6">
                         <div class="mb-3">
                             <label for="subject" class="form-label">Oggetto<sup class="text-danger">*</sup></label>
-                            <input type="text" class="form-control" id="subject" required>
+                            <input v-model.trim="form.subject" type="text" class="form-control" id="subject" required>
                         </div>
                     </div>
 
@@ -52,7 +58,8 @@ export default {
                     <div class="col-12">
                         <div class="mb-3">
                             <label for="message" class="form-label">Messaggio<sup class="text-danger">*</sup></label>
-                            <textarea class="form-control" id="message" rows="10" required></textarea>
+                            <textarea v-model.trim="form.message" class="form-control" id="message" rows="10"
+                                required></textarea>
                         </div>
                     </div>
 
