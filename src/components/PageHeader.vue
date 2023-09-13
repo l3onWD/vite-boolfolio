@@ -18,13 +18,13 @@ export default {
                 <!-- Menu -->
                 <ul class="nav-menu">
 
-                    <li class="nav-item">
-                        <RouterLink :to="{ name: 'home' }" class="nav-link">Home</RouterLink>
+                    <li>
+                        <RouterLink :to="{ name: 'home' }">Home</RouterLink>
                     </li>
-                    <!-- 
-                    <li class="nav-item">
-                        <RouterLink :to="{ name: 'project-list' }" class="nav-link">Progetti</RouterLink>
-                    </li> -->
+
+                    <li>
+                        <RouterLink :to="{ name: 'contact' }">Contatti</RouterLink>
+                    </li>
 
                 </ul>
 
@@ -61,9 +61,19 @@ header {
     }
 
     .nav-menu {
+        display: flex;
+        align-items: center;
+
         a {
+            padding: .5rem 1.5rem;
+
+            display: block;
             font-weight: bold;
             text-transform: uppercase;
+
+            &.active {
+                color: #fff;
+            }
         }
     }
 }
