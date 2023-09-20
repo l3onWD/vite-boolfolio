@@ -53,7 +53,7 @@ export default {
                         <li class="border-top py-3">
                             <strong class="mb-3">Categoria:</strong>
                             <div v-if="project.type">
-                                <span class="badge" :style="`background-color: ${project.type.color}`">{{
+                                <span class="badge" :class="`text-bg-${project.type.color}`">{{
                                     project.type.label
                                 }}</span>
                             </div>
